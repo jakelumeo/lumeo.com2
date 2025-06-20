@@ -1,0 +1,562 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =====================
+  Theme Variables
+===================== */
+
+/* Light Theme Variables */
+.theme-light {
+  --bg-color: #fff7e6;
+  --text-color: #5e3c00;
+  --accent-primary: #fd9e00;
+  --accent-secondary: #fcba36;
+  --accent-light: #fddc90;
+  --accent-hover: #fdc557;
+}
+
+/* Dark Theme Variables */
+.theme-dark {
+  --bg-color: #0f1419;
+  --text-color: #fddc90;
+  --accent-primary: #fd9e00;
+  --accent-secondary: #fcba36;
+  --accent-light: #fddc90;
+  --accent-hover: #fdc557;
+}
+
+/* =====================
+  Global Styles & Animations
+===================== */
+
+body {
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+@keyframes backgroundFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -100% -100%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes titlePulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.02);
+    opacity: 0.95;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =====================
+  Ambient Shadow Effects
+===================== */
+
+@keyframes shadow-pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.88);
+    background-color: rgba(253, 158, 0, 0.15);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    background-color: rgba(252, 186, 54, 0.3);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.88);
+    background-color: rgba(253, 220, 144, 0.2);
+  }
+}
+
+.left-shadow,
+.right-shadow {
+  position: fixed;
+  width: 280px;
+  height: 420px;
+  border-radius: 24px;
+  rotate: 35deg;
+  filter: blur(160px);
+  will-change: transform, background-color;
+  animation: shadow-pulse 4s infinite ease-in-out alternate;
+  pointer-events: none;
+  transition: transform 0.2s ease-out;
+  z-index: 1;
+}
+
+.left-shadow {
+  left: 18%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(253, 158, 0, 0.15);
+}
+
+.right-shadow {
+  right: 18%;
+  top: 50%;
+  transform: translate(50%, -50%);
+  background-color: rgba(253, 158, 0, 0.15);
+}
+
+/* Theme-specific shadow adjustments */
+.theme-light .left-shadow,
+.theme-light .right-shadow {
+  filter: blur(180px);
+}
+
+.theme-dark .left-shadow,
+.theme-dark .right-shadow {
+  filter: blur(140px);
+}
+
+/* Enhanced shadow pulse for dark theme */
+.theme-dark .left-shadow,
+.theme-dark .right-shadow {
+  animation: shadow-pulse-dark 4s infinite ease-in-out alternate;
+}
+
+@keyframes shadow-pulse-dark {
+  0% {
+    transform: translate(-50%, -50%) scale(0.9);
+    background-color: rgba(253, 158, 0, 0.2);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.15);
+    background-color: rgba(252, 186, 54, 0.35);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.9);
+    background-color: rgba(253, 220, 144, 0.25);
+  }
+}
+
+/* =====================
+  Homepage Layout
+===================== */
+
+.homepage {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  padding-top: 100px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* =====================
+  Light Theme
+===================== */
+.theme-light .homepage {
+  background: linear-gradient(135deg, #fff7e6 0%, #f5e6c8 50%, #fddc90 100%);
+  color: var(--text-color);
+}
+
+.theme-light .homepage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 15% 80%, rgba(255, 205, 100, 0.3) 0%, transparent 40%),
+    radial-gradient(circle at 85% 20%, rgba(252, 186, 54, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(253, 197, 87, 0.15) 0%, transparent 60%),
+    radial-gradient(circle at 70% 80%, rgba(253, 158, 0, 0.2) 0%, transparent 45%);
+  animation: backgroundFloat 25s ease-in-out infinite;
+  z-index: 2;
+}
+
+.theme-light .homepage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%),
+    linear-gradient(-45deg, transparent 30%, rgba(255, 255, 255, 0.08) 50%, transparent 70%);
+  animation: shimmer 8s ease-in-out infinite;
+  z-index: 3;
+}
+
+.theme-light .glass-overlay {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.3));
+  backdrop-filter: blur(20px);
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.3);
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* =====================
+  Dark Theme
+===================== */
+.theme-dark .homepage {
+  background: linear-gradient(135deg, #0f1419 0%, #1a1a1a 50%, #0a0a0a 100%);
+  color: var(--text-color);
+}
+
+.theme-dark .homepage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 15% 80%, rgba(253, 158, 0, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 85% 20%, rgba(252, 186, 54, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(253, 197, 87, 0.08) 0%, transparent 60%),
+    radial-gradient(circle at 70% 80%, rgba(253, 158, 0, 0.1) 0%, transparent 45%);
+  animation: backgroundFloat 25s ease-in-out infinite;
+  z-index: 2;
+}
+
+.theme-dark .homepage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.05) 50%, transparent 70%),
+    linear-gradient(-45deg, transparent 30%, rgba(255, 255, 255, 0.03) 50%, transparent 70%);
+  animation: shimmer 8s ease-in-out infinite;
+  z-index: 3;
+}
+
+.theme-dark .glass-overlay {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  backdrop-filter: blur(20px);
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* =====================
+  Hero Section
+===================== */
+
+.hero {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 100px);
+  text-align: center;
+  padding: 2rem;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 800;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  line-height: 1.1;
+  background: linear-gradient(135deg, #fddc90 0%, #fcba36 25%, #fd9e00 50%, #fcba36 75%, #fddc90 100%);
+  background-size: 300% 300%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 4s ease-in-out infinite, titlePulse 3s ease-in-out infinite alternate;
+  text-shadow: 0 0 40px rgba(253, 158, 0, 0.4);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--text-color);
+  max-width: 800px;
+  margin: 0 auto 3rem;
+  line-height: 1.6;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 0.5s forwards;
+}
+
+/* Theme-specific text adjustments */
+.theme-light .hero-subtitle {
+  color: rgba(94, 60, 0, 0.8);
+}
+
+.theme-dark .hero-subtitle {
+  color: rgba(253, 220, 144, 0.9);
+}
+
+/* =====================
+  Buttons
+===================== */
+
+.cta-buttons {
+  display: flex;
+  gap: 1.5rem;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 1s forwards;
+}
+
+/* Button Base */
+.btn {
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  font-family: inherit;
+  font-weight: 600;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+/* Button Variants */
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary), var(--accent-hover));
+  background-size: 200% 200%;
+  color: #2d2d2d;
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 30px;
+  box-shadow:
+    0 8px 25px rgba(253, 158, 0, 0.4),
+    0 4px 15px rgba(252, 186, 54, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  animation: gradientShift 3s ease-in-out infinite;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow:
+    0 15px 40px rgba(253, 158, 0, 0.6),
+    0 8px 25px rgba(252, 186, 54, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background-position: 100% 0;
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  color: var(--text-color);
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 30px;
+  border: 2px solid rgba(253, 158, 0, 0.3);
+  backdrop-filter: blur(15px);
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+  border-color: rgba(253, 158, 0, 0.5);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Theme-specific button adjustments */
+.theme-light .btn-secondary {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.4));
+  color: #5e3c00;
+  border-color: rgba(253, 158, 0, 0.4);
+}
+
+.theme-dark .btn-secondary {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+  color: #fddc90;
+  border-color: rgba(253, 158, 0, 0.3);
+}
+
+/* =====================
+  Responsive Styles
+===================== */
+
+@media (max-width: 768px) {
+  .homepage {
+    padding-top: 80px;
+  }
+
+  .hero {
+    padding: 1rem;
+    min-height: calc(100vh - 80px);
+  }
+
+  .hero-title {
+    margin-bottom: 1.5rem;
+    font-size: clamp(1.5rem, 8vw, 3rem);
+  }
+
+  .hero-subtitle {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+    gap: 1rem;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 16px 24px;
+  }
+
+  /* Mobile shadow adjustments */
+  .left-shadow,
+  .right-shadow {
+    width: 200px;
+    height: 300px;
+    filter: blur(120px);
+  }
+
+  .left-shadow {
+    left: 10%;
+  }
+
+  .right-shadow {
+    right: 10%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 0.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .left-shadow,
+  .right-shadow {
+    width: 150px;
+    height: 250px;
+    filter: blur(100px);
+  }
+}
+
+@media (min-width: 1920px) {
+  .hero {
+    padding: 4rem;
+  }
+
+  .hero-subtitle {
+    max-width: 1000px;
+  }
+
+  .left-shadow,
+  .right-shadow {
+    width: 350px;
+    height: 500px;
+    filter: blur(200px);
+  }
+}
+
+@media (min-width: 2560px) {
+  .hero-title {
+    max-width: 1400px;
+  }
+
+  .hero-subtitle {
+    max-width: 1200px;
+  }
+
+  .left-shadow,
+  .right-shadow {
+    width: 400px;
+    height: 600px;
+    filter: blur(240px);
+  }
+}
+
+/* =====================
+  Interactive Enhancements
+===================== */
+
+/* Mouse interaction for shadows */
+@media (hover: hover) {
+  .left-shadow:hover,
+  .right-shadow:hover {
+    animation-play-state: paused;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .left-shadow,
+  .right-shadow,
+  .hero-title,
+  .hero-subtitle,
+  .cta-buttons {
+    animation: none;
+  }
+  
+  .homepage::before,
+  .homepage::after {
+    animation: none;
+  }
+}

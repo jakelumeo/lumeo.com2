@@ -1,0 +1,115 @@
+/* === Theme Support === */
+.features-section.dark-theme {
+    background-color: rgba(0, 0, 0, 0.763);
+  }
+  
+  .features-section.light-theme {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 50%, #f0f0f0 100%);
+    padding: 10 20;
+    background-image:
+    radial-gradient(circle at 15% 80%, rgba(255, 205, 100, 0.3) 0%, transparent 40%),
+    radial-gradient(circle at 85% 20%, rgba(252, 186, 54, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(253, 197, 87, 0.15) 0%, transparent 60%),
+    radial-gradient(circle at 70% 80%, rgba(253, 158, 0, 0.2) 0%, transparent 45%);
+  animation: backgroundFloat 25s ease-in-out infinite;
+  z-index: 2;
+  }
+  
+  .light-theme .feature-title {
+    color: #fdc557;
+  }
+  
+  .light-theme .feature-description {
+    color: #1f2937;
+  }
+  
+  .light-theme .feature-card {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: #fdc557;
+  }
+  
+  /* === Features Section Styles === */
+  .features-section {
+    width: 100%;
+    max-width: auto;
+    margin: 0 auto;
+    padding: 4rem 10rem;
+  }
+  
+  /* === Header Styles === */
+  .features-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    /* color: #fd9e00; */
+  }
+  
+  .features-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fd9e00;
+    margin-bottom: 1rem;
+  }
+  
+  /* === Grid Layout === */
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  /* === Feature Card Styles === */
+  .feature-card {
+    background: rgba(253, 197, 87, 0.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid #fdc557;
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: all 0.3s ease;
+  }
+  
+  .feature-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* ⬅ shadow added */
+  }
+  
+  .feature-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #fdc557;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  
+  .feature-description {
+    color: #ffffff;
+    line-height: 1.6;
+    font-size: 1rem;
+    margin: 0;
+  }
+  
+  /* === Responsive Design === */
+  @media (min-width: 768px) {
+    .features-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .features-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .features-section {
+      padding: 3rem 1rem;
+    }
+  
+    .features-title {
+      font-size: 2.5rem;
+    }
+  
+    .features-header {
+      margin-bottom: 3rem;
+    }
+  }

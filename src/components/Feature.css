@@ -1,0 +1,85 @@
+/* Features Section Styles */
+.features-section {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+/* Header Styles */
+.features-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.features-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #fd9e00;
+  margin-bottom: 1rem;
+}
+
+/* Grid Layout */
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+/* Feature Card Styles */
+.feature-card {
+  background: rgba(55, 54, 31, 0.4);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(245, 229, 3, 0.5);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  background: rgba(31, 41, 55, 0.6);
+  transform: scale(1.05);
+  border-color: rgba(74, 222, 128, 0.3);
+}
+
+.feature-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #4ade80;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.feature-description {
+  color: #d1d5db;
+  line-height: 1.6;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .features-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .features-section {
+    padding: 3rem 1rem;
+  }
+  
+  .features-title {
+    font-size: 2.5rem;
+  }
+  
+  .features-header {
+    margin-bottom: 3rem;
+  }
+}

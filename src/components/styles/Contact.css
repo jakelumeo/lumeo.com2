@@ -1,0 +1,213 @@
+:root {
+  --accent-primary: #fd9e00;
+  --accent-secondary: #fcba36;
+  --accent-hover: #fdc557;
+}
+
+/* === Contact Section Base Styles === */
+.contact-section {
+  width: 100%;
+  max-width: auto;
+  margin: 0 auto;
+  padding: 2rem 10rem; /* Reduced from 4rem to 2rem for top/bottom */
+  text-align: center;
+  /* Removed min-height: 100vh to allow natural content height */
+}
+
+/* === Dark Theme === */
+.contact-section.dark-theme {
+  background: #0f172a; /* Solid dark background instead of transparent */
+  color: #ffffff;
+}
+
+.dark-theme .contact-title {
+  color: #fd9e00;
+}
+
+.dark-theme .contact-subtitle {
+  color: #ffffff;
+}
+
+.dark-theme .contact-input {
+  background: rgba(253, 197, 87, 0.15);
+  color: #ffffff;
+  border-color: #fdc557;
+}
+
+.dark-theme .contact-input::placeholder {
+  color: #fddc90;
+}
+
+.dark-theme .contact-footer {
+  color: #ffffff;
+}
+
+/* === Light Theme === */
+.contact-section.light-theme {
+  background: linear-gradient(135deg, #fff7e6 0%, #ffe0b3 50%, #ffcc80 100%);
+  color: #fd9e00;
+}
+
+.light-theme .contact-title {
+  color: #fd9e00;
+}
+
+.light-theme .contact-subtitle {
+  color: #1f2937;
+}
+
+.light-theme .contact-input {
+  background: rgba(255, 255, 255, 0.8);
+  color: #1f2937;
+  border-color: #fdc557;
+}
+
+.light-theme .contact-input::placeholder {
+  color: #999;
+}
+
+.light-theme .contact-footer {
+  color: #1f2937;
+}
+
+/* === Header === */
+.contact-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.contact-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 2.5rem;
+}
+
+/* === Form Layout === */
+.contact-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+/* === Input === */
+.contact-input {
+  padding: 1rem 1.25rem;
+  font-size: 1rem;
+  border: 1px solid #fdc557;
+  border-radius: 0.5rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+  min-width: 280px;
+}
+
+/* === Button === */
+.contact-button {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #fdc557;
+  color: #0f172a;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.contact-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* === Footer === */
+.contact-footer {
+  font-size: 0.9rem;
+}
+
+.contact-footer a {
+  color: #fdc557;
+  text-decoration: none;
+}
+
+.contact-footer a:hover {
+  text-decoration: underline;
+}
+
+/* === Responsive Design === */
+@media (max-width: 640px) {
+  .contact-section {
+    padding: 2rem 1rem; /* Reduced from 3rem to 2rem */
+  }
+
+  .contact-title {
+    font-size: 2.5rem;
+  }
+
+  .contact-form {
+    flex-direction: column;
+  }
+
+  .contact-button {
+    width: 100%;
+  }
+}
+
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary), var(--accent-hover));
+  background-size: 200% 200%;
+  color: #2d2d2d;
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 30px;
+  box-shadow:
+    0 8px 25px rgba(253, 158, 0, 0.4),
+    0 4px 15px rgba(252, 186, 54, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  animation: gradientShift 3s ease-in-out infinite;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+/* === Glossy Overlay on Hover === */
+.btn-primary::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 100%);
+  transform: skewX(-25deg);
+  transition: left 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+.btn-primary:hover::after {
+  left: 130%;
+}
+
+.btn-primary:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow:
+    0 15px 40px rgba(253, 158, 0, 0.6),
+    0 8px 25px rgba(252, 186, 54, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  background-position: 100% 0;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
