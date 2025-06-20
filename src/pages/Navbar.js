@@ -46,6 +46,16 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
     return () => document.removeEventListener('click', handleClickOutside);
   }, [isMobileMenuOpen]);
 
+  // Smooth scroll handler
+  const handleNavClick = (e, targetId) => {
+    e.preventDefault();
+    const section = document.getElementById(targetId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+    closeMobileMenu();
+  };
+
   return (
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="navbar-container">
@@ -59,10 +69,9 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
 
         {/* Desktop Navigation Links with Theme Toggle */}
         <div className="navbar-links desktop-only">
-          <a href="#features" className="nav-link">Features</a>
-          <a href="#how-it-works" className="nav-link">How It Works</a>
-
-          <a href="#contact-section" className="nav-link">Contact</a>
+          <a href="#features" className="nav-link" onClick={e => handleNavClick(e, 'features')}>Features</a>
+          <a href="#how-it-works" className="nav-link" onClick={e => handleNavClick(e, 'how-it-works')}>How It Works</a>
+          <a href="#contact-section" className="nav-link" onClick={e => handleNavClick(e, 'contact-section')}>Contact</a>
           
           {/* Theme Toggle Button - Desktop */}
           <button 
@@ -103,13 +112,13 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
       {/* Mobile Navigation Menu */}
       <div className={`mobile-nav ${isMobileMenuOpen ? 'active' : ''}`}>
         <div className="mobile-nav-content">
-          <a href="#features" className="mobile-nav-link" onClick={closeMobileMenu}>
+          <a href="#features" className="mobile-nav-link" onClick={e => handleNavClick(e, 'features')}>
             Features
           </a>
-          <a href="#how-it-works" className="mobile-nav-link" onClick={closeMobileMenu}>
+          <a href="#how-it-works" className="mobile-nav-link" onClick={e => handleNavClick(e, 'how-it-works')}>
             How It Works
           </a>
-          <a href="#contact-section" className="mobile-nav-link" onClick={closeMobileMenu}>
+          <a href="#contact-section" className="mobile-nav-link" onClick={e => handleNavClick(e, 'contact-section')}>
             Contact
           </a>
         </div>
