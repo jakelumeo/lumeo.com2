@@ -40,6 +40,33 @@ const Homepage = ({ isDarkMode }) => {
         return () => observer.disconnect();
     }, []);
 
+    // Staggered animation for how-it-works steps
+    const howItWorksSteps = [
+        { icon: '📝', text: 'Sign up and set your savings goal' },
+        { icon: '🤝', text: 'Join or create a challenge group' },
+        { icon: '📊', text: 'Track your progress together' },
+        { icon: '🎉', text: 'Celebrate achievements as a team' },
+    ];
+    const howItWorksRefs = useRef([]);
+    useEffect(() => {
+        const revealStep = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const idx = howItWorksRefs.current.indexOf(entry.target);
+                    setTimeout(() => {
+                        entry.target.classList.add('step-visible');
+                    }, idx * 180);
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+        const observer = new window.IntersectionObserver(revealStep, { threshold: 0.15 });
+        howItWorksRefs.current.forEach(step => {
+            if (step) observer.observe(step);
+        });
+        return () => observer.disconnect();
+    }, []);
+
     return (
         <>
             <div className="left-shadow"></div>
@@ -81,23 +108,29 @@ const Homepage = ({ isDarkMode }) => {
                     {/* How It Works Section */}
                     <section className="how-it-works-section" id="how-it-works" ref={el => sectionRefs.current[1] = el}>
                         <h2>How It Works</h2>
-                        <ol className="how-it-works-list">
-                            <li>Sign up and set your savings goal</li>
-                            <li>Join or create a challenge group</li>
-                            <li>Track your progress together</li>
-                            <li>Celebrate achievements as a team</li>
-                        </ol>
+                        <div className="how-it-works-list">
+                            {howItWorksSteps.map((step, idx) => (
+                                <div
+                                    className="how-it-works-step"
+                                    key={idx}
+                                    ref={el => howItWorksRefs.current[idx] = el}
+                                >
+                                    <span className="step-icon">{step.icon}</span>
+                                    {step.text}
+                                </div>
+                            ))}
+                        </div>
                     </section>
 
                     {/* Testimonials Section */}
                     <section className="testimonials-section" id="testimonials" ref={el => sectionRefs.current[2] = el}>
                         <h2>What People Say</h2>
                         <div className="testimonials-list">
-                            <blockquote>
+                            <blockquote className="testimonial-fadein">
                                 "Lumeo made saving fun and social! I finally hit my goal."<br/>
                                 <span>- Alex, Student</span>
                             </blockquote>
-                            <blockquote>
+                            <blockquote className="testimonial-fadein">
                                 "The group challenges kept me motivated every week."<br/>
                                 <span>- Jamie, Young Professional</span>
                             </blockquote>
